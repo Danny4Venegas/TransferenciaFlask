@@ -1,11 +1,14 @@
 import rsa
 import base64
 from flask import Flask, request
+from key_scrow import scrow_key
 
 app = Flask(__name__)
 
 # Genera un par de claves criptográficas
 (pubkey, privkey) = rsa.newkeys(512)
+
+scrow_key(pubkey,privkey)
 
 
 # Función de firma digital
