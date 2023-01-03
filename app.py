@@ -8,7 +8,7 @@ app = Flask(__name__)
 # Genera un par de claves criptográficas
 (pubkey, privkey) = rsa.newkeys(512)
 
-scrow_key(pubkey,privkey)
+#scrow_key(pubkey,privkey)
 
 
 # Función de firma digital
@@ -43,15 +43,19 @@ def send_signed_xml():
         print("La firma digital no es válida.")
         return {'message': 'La firma digital no es válida.'}, 400
 
+@app.route('/')
+def principal():
+    return "/recibir<br>/enviar"
 
 @app.route('/recibir')
 def receive_signed_xml():
     # Firma el documento XML
-    xml_document = b'<xml>Mi documento XML</xml>'
-    signature = sign(xml_document, privkey)
+    xml_document = '<root><apellido>García</apellido><ci>1726264961</ci><ciudad>Quito</ciudad><correoElectronico>andres@gmail.com</correoElectronico><direccion>antonio román n51-113 y josé peñaherrera</direccion><fechaNacimiento>1998-05-24</fechaNacimiento><mensaje>XD</mensaje><nombre>Andrés</nombre><segundoApellido>Cuvi</segundoApellido><segundoNombre>Wladimir</segundoNombre><select>Soltero</select><telefono>+593992542291</telefono></root>'
+
+    signature = sign(xml_document.encode('utf-8'), privkey)
 
     # Convierte el objeto de tipo bytes a una cadena de texto
-    xml_document_str = xml_document.decode('utf-8')
+    xml_document_str = xml_document
 
     # Encode the signature and public key in base64
     encoded_signature = base64.b64encode(signature).decode('utf-8')
