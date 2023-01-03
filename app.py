@@ -50,7 +50,7 @@ def principal():
 @app.route('/recibir')
 def receive_signed_xml():
     # Firma el documento XML
-    xml_document = '<root><apellido>García</apellido><ci>1726264961</ci><ciudad>Quito</ciudad><correoElectronico>andres@gmail.com</correoElectronico><direccion>antonio román n51-113 y josé peñaherrera</direccion><fechaNacimiento>1998-05-24</fechaNacimiento><mensaje>XD</mensaje><nombre>Andrés</nombre><segundoApellido>Cuvi</segundoApellido><segundoNombre>Wladimir</segundoNombre><select>Soltero</select><telefono>+593992542291</telefono></root>'
+    xml_document = '<root><apellido>Venegas</apellido><ci>1718043050</ci><ciudad>Quito</ciudad><correoElectronico>venegas@gmail.com</correoElectronico><direccion>antonio román n51-113 y josé peñaherrera</direccion><fechaNacimiento>1998-05-24</fechaNacimiento><mensaje>XD</mensaje><nombre>Danny</nombre><segundoApellido>Villavicencio</segundoApellido><segundoNombre>Esteban</segundoNombre><select>Soltero</select><telefono>+593978762244</telefono></root>'
 
     signature = sign(xml_document.encode('utf-8'), privkey)
 
