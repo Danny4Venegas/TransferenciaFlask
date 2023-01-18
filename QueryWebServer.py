@@ -38,9 +38,9 @@ data = {
 mostrarDatos()
 
 #Funición Query General 1
-def obtenerDatosSqlServer(servidor, baseDatos, username, contrasena, consulta):
+def obtenerDatosSqlServerXML(servidor, baseDatos, username, contrasena, consulta):
     # Connect to the database
-    conexion = pyodbc.connect('DRIVER={SQL Server};'
+    conexion = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};'
                                 'SERVER=' + servidor + ';'
                                 'DATABASE=' + baseDatos + ';'
                                 'UID=' + username + ';'
