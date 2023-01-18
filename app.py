@@ -46,7 +46,7 @@ def send_signed_xml():
 
 @app.route('/')
 def principal():
-    return "/recibir<br>/enviar"
+    return "/recibir<br>/enviar<br>/datos"
 
 @app.route('/recibir')
 def receive_signed_xml():
@@ -73,6 +73,7 @@ def receive_signed_xml():
 def obtener_datos():
     # Llamar la función y pasar los parámetros necesarios
     datos_xml = obtenerDatosSqlServerXML('172.28.32.52', 'BDEPNQuito', 'sa', 'smile', "SELECT * FROM Persona")
+    #datos_xml = obtenerDatosSqlServerXML('172.28.32.52', 'mi_bd', 'sa', 'smile', "SELECT * FROM persona")
     # Devolver los datos XML con el tipo de contenido adecuado
     return Response(datos_xml, mimetype='text/xml')
 
