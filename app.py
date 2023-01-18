@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 # Genera un par de claves criptográficas
 (pubkey, privkey) = rsa.newkeys(512)
-
-#scrow_key(pubkey,privkey)
+#user = 'cristhian.tohasa'
+#scrow_key(user,pubkey,privkey)
 
 
 # Función de firma digital
@@ -50,7 +50,7 @@ def principal():
 @app.route('/recibir')
 def receive_signed_xml():
     # Firma el documento XML
-    xml_document = '<root><apellido>Venegas</apellido><ci>1718043050</ci><ciudad>Quito</ciudad><correoElectronico>venegas@gmail.com</correoElectronico><direccion>antonio román n51-113 y josé peñaherrera</direccion><fechaNacimiento>1998-05-24</fechaNacimiento><mensaje>XD</mensaje><nombre>Danny</nombre><segundoApellido>Villavicencio</segundoApellido><segundoNombre>Esteban</segundoNombre><select>Soltero</select><telefono>+593978762244</telefono></root>'
+    xml_document = '<root><apellido>Venegas</apellido><ci>1718043050</ci><ciudad>Quito</ciudad><correoElectronico>venegas@gmail.com</correoElectronico><direccion>antonio román n51-113 y josé peñaherrera</direccion><fechaNacimiento>1995-03-29</fechaNacimiento><mensaje>Hola</mensaje><nombre>Danny</nombre><segundoApellido>Villavicencio</segundoApellido><segundoNombre>Esteban</segundoNombre><select>Soltero</select><telefono>+593978762244</telefono></root>'
 
     signature = sign(xml_document.encode('utf-8'), privkey)
 
