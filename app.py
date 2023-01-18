@@ -1,6 +1,7 @@
 import rsa
 import base64
-from flask import Flask, request
+from flask import Flask, request, Response
+from QueryWebServer import obtenerDatosSqlServer
 from key_scrow import scrow_key
 
 app = Flask(__name__)
@@ -67,6 +68,14 @@ def receive_signed_xml():
         'signature': encoded_signature,
         'pubkey': encoded_pubkey
     }
+
+@app.route('/datos')
+def obtener_datos():
+    # Llamar la función y pasar los parámetros necesarios
+    datos_xml = obtenerDatosSqlServer('tu_servidor', 'tu_bd', 'tu_nombre_usuario', 'tu_contraseña', "SELECT * FROM Persona WHERE cedula = '?'")
+
+    # Devolver los datos XML con el tipo de contenido adecuado
+    return Response(datos_xml, mimetype='text/xml')
 
 
 if __name__ == '__main__':
