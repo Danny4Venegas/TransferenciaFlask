@@ -78,5 +78,28 @@ def obtener_datos():
     return Response(datos_xml, mimetype='text/xml')
 
 
+@app.route('/datos2')
+def consultaNivel2(ci):
+    query = "SELECT * FROM datosPersonales WHERE cedula = ci"
+    datos_xml = obtenerDatosSqlServerXML('172.28.32.52', 'BDEPNQuito', 'sa', 'smile', query)
+    return Response(datos_xml, mimetype='text/xml')
+
+@app.route('/datos3')
+def consultaNivel3(ci):
+    query = "SELECT * FROM datosPersonales OUTER JOIN historialLaboral ON datosPersonales.cedula = historialLaboral.cedula where cedula = ci"
+    datos_xml = obtenerDatosSqlServerXML('172.28.32.52', 'BDEPNQuito', 'sa', 'smile', query)
+    return Response(datos_xml, mimetype='text/xml')
+
+
+
+@app.route('/datos5')
+def consultaNivel3(ci):
+    query = "SELECT * FROM Perona " \
+            "JOIN Contacto ON Perona.cod_perona = Contacto.cod_perona " \
+            "JOIN datosPersonales ON datosPersonales.cedula = historialLaboral.cedula " \
+            "where cedula = ci"     
+    datos_xml = obtenerDatosSqlServerXML('172.28.32.52', 'BDEPNQuito', 'sa', 'smile', query)
+    return Response(datos_xml, mimetype='text/xml')
+
 if __name__ == '__main__':
     app.run()
